@@ -1,10 +1,16 @@
 import requests
 import sys
 import boto3
+import os
 
 # Mananged hostnames; remember to include the DNS style trailing dot!
 # ie ['hostname.eelpieconsulting.co.uk.']
 managed_host_names = []
+if os.environ['MANAGED_HOSTS'] is not None:
+	managed_host_names = os.environ['MANAGED_HOSTS']
+	
+print("Managed hostnames are: " + managed_host_names)
+
 
 def get_current_ip():
 	# Determine our current public using the ipify API
